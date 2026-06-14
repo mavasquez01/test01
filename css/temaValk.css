@@ -954,3 +954,85 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     display: inline-block;
 }
 
+/* =====================================================
+   LANDING MOBILE FIXES
+===================================================== */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .navbar-brand img {
+        height: 75px !important;
+    }
+
+    main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #heroCarousel .carousel-item img {
+        height: 420px !important;
+    }
+
+    #heroCarousel .position-absolute.top-50 {
+        left: 0 !important;
+        right: 0 !important;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+        text-align: left;
+    }
+
+    #heroCarousel h1 {
+        font-size: 2rem !important;
+        line-height: 1.1;
+    }
+
+    #heroCarousel .lead {
+        font-size: 1rem;
+    }
+
+    #heroCarousel .btn {
+        width: auto !important;
+        padding: .75rem 1rem;
+        font-size: .9rem;
+    }
+
+    .card-body {
+        padding: 1.5rem !important;
+    }
+
+    .card-img-top {
+        height: 220px !important;
+    }
+
+    #nuestroEspacio img {
+        height: 220px !important;
+        margin-bottom: 1rem;
+    }
+
+    #planes .btn {
+        width: 100% !important;
+    }
+
+    .display-5 {
+        font-size: 2rem !important;
+    }
+
+    footer img {
+        height: 55px !important;
+    }
+
+    footer .d-flex {
+        gap: 1rem !important;
+        flex-wrap: wrap;
+    }
+
+    .modal-dialog {
+        max-width: calc(100% - 32px) !important;
+        margin: 1rem auto !important;
+    }
+}
+
