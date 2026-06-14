@@ -1036,3 +1036,57 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     }
 }
 
+#tabs-admin .nav-link.active {
+    border-left: none !important;
+    padding-left: inherit !important;
+}
+
+#tabs-admin .nav-link.active::after {
+    display: block !important;
+    width: 100%;
+}
+#tabs-admin .nav-link.active {
+    padding-left: inherit !important;
+    border-left: none !important;
+}
+#tabs-admin .nav-link {
+    position: relative;
+    border: none !important;
+    padding: .5rem 1rem;
+}
+
+#tabs-admin .nav-link.active {
+    color: var(--bs-primary) !important;
+    background: transparent !important;
+
+    border-left: none !important;
+    padding-left: 1rem !important;
+}
+
+#tabs-admin .nav-link.active::after {
+    content: "";
+    position: absolute;
+
+    left: 50%;
+    bottom: -4px;
+
+    transform: translateX(-50%);
+
+    width: 80%;
+    height: 2px;
+
+    background: var(--bs-primary);
+    border-radius: 999px;
+}
+
+.badge-plan-warning {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.14);
+    color: #fbbf24;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 999px;
+    padding: .25rem .65rem;
+    font-size: .72rem;
+    font-weight: 700;
+}
+
