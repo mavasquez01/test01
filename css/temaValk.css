@@ -955,110 +955,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 /* =====================================================
-   LANDING MOBILE FIXES
+   ADMIN USER TABS + WARNINGS
+   Scoped fixes so global nav active styles do not move tabs
 ===================================================== */
-
-@media (max-width: 768px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .navbar-brand img {
-        height: 75px !important;
-    }
-
-    main {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    #heroCarousel .carousel-item img {
-        height: 420px !important;
-    }
-
-    #heroCarousel .position-absolute.top-50 {
-        left: 0 !important;
-        right: 0 !important;
-        padding-left: 1.25rem !important;
-        padding-right: 1.25rem !important;
-        text-align: left;
-    }
-
-    #heroCarousel h1 {
-        font-size: 2rem !important;
-        line-height: 1.1;
-    }
-
-    #heroCarousel .lead {
-        font-size: 1rem;
-    }
-
-    #heroCarousel .btn {
-        width: auto !important;
-        padding: .75rem 1rem;
-        font-size: .9rem;
-    }
-
-    .card-body {
-        padding: 1.5rem !important;
-    }
-
-    .card-img-top {
-        height: 220px !important;
-    }
-
-    #nuestroEspacio img {
-        height: 220px !important;
-        margin-bottom: 1rem;
-    }
-
-    #planes .btn {
-        width: 100% !important;
-    }
-
-    .display-5 {
-        font-size: 2rem !important;
-    }
-
-    footer img {
-        height: 55px !important;
-    }
-
-    footer .d-flex {
-        gap: 1rem !important;
-        flex-wrap: wrap;
-    }
-
-    .modal-dialog {
-        max-width: calc(100% - 32px) !important;
-        margin: 1rem auto !important;
-    }
-}
-
-#tabs-admin .nav-link.active {
-    border-left: none !important;
-    padding-left: inherit !important;
-}
-
-#tabs-admin .nav-link.active::after {
-    display: block !important;
-    width: 100%;
-}
-#tabs-admin .nav-link.active {
-    padding-left: inherit !important;
-    border-left: none !important;
-}
 #tabs-admin .nav-link {
     position: relative;
     border: none !important;
-    padding: .5rem 1rem;
+    padding: .5rem 1rem !important;
+    background: transparent !important;
 }
 
 #tabs-admin .nav-link.active {
     color: var(--bs-primary) !important;
     background: transparent !important;
-
     border-left: none !important;
     padding-left: 1rem !important;
 }
@@ -1066,17 +975,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 #tabs-admin .nav-link.active::after {
     content: "";
     position: absolute;
-
     left: 50%;
     bottom: -4px;
-
     transform: translateX(-50%);
-
     width: 80%;
     height: 2px;
-
     background: var(--bs-primary);
     border-radius: 999px;
+    display: block !important;
 }
 
 .badge-plan-warning {
@@ -1092,9 +998,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 /* =====================================================
    LANDING PAGE - CAROUSEL RESPONSIVE CLEANUP
-   Moved from index.html and scoped to the landing page
+   Scoped to body.landing-page so app/admin/profesor screens do not break
 ===================================================== */
-
 *,
 *::before,
 *::after {
@@ -1105,7 +1010,7 @@ html,
 body {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 img,
@@ -1115,12 +1020,15 @@ video {
 }
 
 .landing-page {
-    overflow-x: hidden;
+    position: relative;
+    overflow-x: hidden !important;
+    background: var(--bs-body-bg) !important;
 }
 
 .landing-main {
     width: 100%;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: hidden !important;
 }
 
 .landing-page .navbar .container {
@@ -1130,11 +1038,12 @@ video {
 .landing-logo {
     height: 82px;
     width: auto;
+    display: block;
 }
 
 .landing-section {
     padding: 4.5rem 0;
-    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 .section-kicker {
@@ -1163,6 +1072,7 @@ video {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .hero-overlay {
@@ -1221,19 +1131,20 @@ video {
     margin-bottom: .7rem;
 }
 
-.space-img {
-    height: 270px;
+.space-img,
+.plan-img {
     width: 100%;
     object-fit: cover;
-    border-radius: 22px;
     display: block;
+}
+
+.space-img {
+    height: 270px;
+    border-radius: 22px;
 }
 
 .plan-img {
     height: 270px;
-    width: 100%;
-    object-fit: cover;
-    display: block;
 }
 
 .plan-price {
@@ -1274,7 +1185,7 @@ video {
     transform: translateY(-3px);
 }
 
-/* Scoped landing reveals. Keep the desktop movement, but prevent mobile horizontal overflow. */
+/* Landing reveals. Desktop may slide horizontally; mobile switches to vertical only. */
 .landing-page .reveal,
 .landing-page .reveal-left,
 .landing-page .reveal-right {
@@ -1306,21 +1217,19 @@ video {
 .landing-page .delay-2 { transition-delay: .24s; }
 .landing-page .delay-3 { transition-delay: .36s; }
 
-/* Landing navbar override: avoids the global admin/mobile left-border active rule. */
+/* Landing navbar override: avoids the global left-border active rule. */
+.landing-page .navbar .nav-link,
 .landing-page .navbar .nav-link.active {
     border-left: none !important;
+}
+
+.landing-page .navbar .nav-link.active {
     padding-left: .5rem !important;
 }
 
 .landing-page .navbar .nav-link.active::after {
-    display: block;
+    display: block !important;
     width: 100%;
-}
-
-@supports not (overflow: clip) {
-    .landing-section {
-        overflow-x: hidden;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1328,9 +1237,16 @@ video {
         padding: .55rem 0 !important;
     }
 
-    .landing-page .navbar .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    .landing-page .navbar .container,
+    .landing-page .hero-content .container,
+    .landing-page .footer .container,
+    .landing-page .landing-section > .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 1.25rem !important;
+        padding-right: 1.25rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
     .landing-logo {
@@ -1417,7 +1333,7 @@ video {
         margin: 1rem auto !important;
     }
 
-    /* The old horizontal translateX reveal created a blank area to the right on phones. */
+    /* Prevent the initial right-side flash caused by translateX reveal animations. */
     .landing-page .reveal-left,
     .landing-page .reveal-right {
         transform: translateY(32px);
@@ -1428,49 +1344,32 @@ video {
         transform: translateY(0);
     }
 
-    .landing-page .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    /* Keep Bootstrap gutters for small feature grids, but remove them where full-width cards/images should align. */
+    #nuestroEspacio .row,
+    #planes .row,
+    #contacto .row,
+    .landing-section.pt-0 .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        --bs-gutter-x: 0;
+        row-gap: 1.5rem;
     }
 
-    .landing-page .row {
-        --bs-gutter-x: 1rem;
-    }
-}
-/* =====================================================
-   FIX INITIAL MOBILE HORIZONTAL FLASH
-===================================================== */
-
-html,
-body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden !important;
-}
-
-body {
-    position: relative;
-}
-
-/* Prevent reveal animations from creating horizontal overflow on mobile */
-@media (max-width: 768px) {
-
-    .reveal-left,
-    .reveal-right {
-        transform: translateY(38px);
+    #nuestroEspacio .row > [class*="col-"],
+    #planes .row > [class*="col-"],
+    #contacto .row > [class*="col-"],
+    .landing-section.pt-0 .row > [class*="col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
-    .reveal-left.active,
-    .reveal-right.active {
-        transform: translateY(0);
-    }
-
-    main,
-    section,
-    .container,
-    .container-fluid,
-    .row {
+    .space-img,
+    .soft-card,
+    .testimonial-box {
+        width: 100%;
         max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .carousel,
@@ -1481,26 +1380,3 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-
-    #nuestroEspacio .container {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-    }
-
-    #nuestroEspacio .row {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        row-gap: 1.5rem;
-    }
-
-    #nuestroEspacio .row > [class*="col-"] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    #nuestroEspacio .space-img {
-        width: 100%;
-        display: block;
-    }
-}
