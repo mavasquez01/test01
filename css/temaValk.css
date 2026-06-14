@@ -1090,3 +1090,350 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-weight: 700;
 }
 
+/* =====================================================
+   LANDING PAGE - CAROUSEL RESPONSIVE CLEANUP
+   Moved from index.html and scoped to the landing page
+===================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+}
+
+.landing-page {
+    overflow-x: hidden;
+}
+
+.landing-main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.landing-page .navbar .container {
+    max-width: 1180px;
+}
+
+.landing-logo {
+    height: 82px;
+    width: auto;
+}
+
+.landing-section {
+    padding: 4.5rem 0;
+    overflow-x: clip;
+}
+
+.section-kicker {
+    color: var(--bs-primary);
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-size: .85rem;
+}
+
+.section-divider {
+    width: 86px;
+    height: 4px;
+    background: var(--bs-primary);
+    border-radius: 999px;
+    margin: 1rem auto 0;
+}
+
+.hero-slide {
+    height: 560px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, .78),
+        rgba(0, 0, 0, .42),
+        rgba(0, 0, 0, .72)
+    );
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    color: white;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    font-weight: 800;
+}
+
+.hero-subtitle {
+    max-width: 560px;
+    color: rgba(255, 255, 255, .82);
+}
+
+.soft-card {
+    background: #101010;
+    border: 0;
+    border-radius: 24px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+    overflow: hidden;
+    height: 100%;
+}
+
+.soft-card:hover,
+.testimonial-box:hover,
+.feature-box:hover {
+    transform: none;
+}
+
+.feature-box {
+    text-align: center;
+    padding: 1.25rem;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: .7rem;
+}
+
+.space-img {
+    height: 270px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+    display: block;
+}
+
+.plan-img {
+    height: 270px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.plan-price {
+    color: var(--bs-primary);
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.testimonial-box {
+    background: #101010;
+    border-radius: 24px;
+    padding: 2rem;
+    height: 100%;
+}
+
+.testimonial-avatar {
+    width: 86px;
+    height: 86px;
+    object-fit: cover;
+    border: 3px solid var(--bs-primary);
+}
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.social-icon {
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    transition: .25s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+/* Scoped landing reveals. Keep the desktop movement, but prevent mobile horizontal overflow. */
+.landing-page .reveal,
+.landing-page .reveal-left,
+.landing-page .reveal-right {
+    opacity: 0;
+    transition: opacity .75s ease, transform .75s ease;
+    will-change: opacity, transform;
+}
+
+.landing-page .reveal {
+    transform: translateY(38px);
+}
+
+.landing-page .reveal-left {
+    transform: translateX(-38px);
+}
+
+.landing-page .reveal-right {
+    transform: translateX(38px);
+}
+
+.landing-page .reveal.active,
+.landing-page .reveal-left.active,
+.landing-page .reveal-right.active {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.landing-page .delay-1 { transition-delay: .12s; }
+.landing-page .delay-2 { transition-delay: .24s; }
+.landing-page .delay-3 { transition-delay: .36s; }
+
+/* Landing navbar override: avoids the global admin/mobile left-border active rule. */
+.landing-page .navbar .nav-link.active {
+    border-left: none !important;
+    padding-left: .5rem !important;
+}
+
+.landing-page .navbar .nav-link.active::after {
+    display: block;
+    width: 100%;
+}
+
+@supports not (overflow: clip) {
+    .landing-section {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    .landing-page .navbar {
+        padding: .55rem 0 !important;
+    }
+
+    .landing-page .navbar .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .landing-logo {
+        height: 58px;
+    }
+
+    .landing-section {
+        padding: 3.2rem 0;
+    }
+
+    .hero-slide {
+        height: 500px;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(0, 0, 0, .35),
+            rgba(0, 0, 0, .88)
+        );
+    }
+
+    .hero-content {
+        top: auto;
+        bottom: 3.5rem;
+        transform: none;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 2.45rem;
+        line-height: 1.05;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1rem;
+    }
+
+    .hero-content .btn {
+        width: auto !important;
+        padding: .8rem 1.1rem;
+        font-size: .9rem;
+    }
+
+    .feature-box {
+        padding: 1rem .8rem;
+    }
+
+    .feature-box p {
+        font-size: .85rem;
+    }
+
+    .landing-page .display-5 {
+        font-size: 2rem !important;
+    }
+
+    .space-img {
+        height: 220px;
+    }
+
+    .plan-img {
+        height: 215px;
+    }
+
+    .soft-card .card-body,
+    .testimonial-box {
+        padding: 1.35rem !important;
+    }
+
+    #planes .btn,
+    #contacto .btn {
+        width: 100% !important;
+    }
+
+    .social-icon {
+        height: 48px;
+        width: 48px;
+    }
+
+    .landing-page .modal-dialog {
+        max-width: calc(100% - 32px) !important;
+        margin: 1rem auto !important;
+    }
+
+    /* The old horizontal translateX reveal created a blank area to the right on phones. */
+    .landing-page .reveal-left,
+    .landing-page .reveal-right {
+        transform: translateY(32px);
+    }
+
+    .landing-page .reveal-left.active,
+    .landing-page .reveal-right.active {
+        transform: translateY(0);
+    }
+
+    .landing-page .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .landing-page .row {
+        --bs-gutter-x: 1rem;
+    }
+}
