@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } else if (rut === "12345-6" && pass === "12345") {
             rol = "Alumno";
-            pagina = "#"; 
+            pagina = "../alumna/panelAlumna.html"; 
 
         } else if (rut === "123456-7" && pass === "12345") {
             rol = "Profesor";

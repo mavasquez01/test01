@@ -11,54 +11,12 @@
 
     <style>
         .landing-logo {
-            height: 76px;
+            height: 82px;
             width: auto;
         }
 
-        .landing-hero {
-            position: relative;
-            min-height: calc(100dvh - 96px);
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            border-radius: 0 0 32px 32px;
-            background:
-                linear-gradient(90deg, rgba(0, 0, 0, .88), rgba(0, 0, 0, .45), rgba(0, 0, 0, .85)),
-                url("static/cr1.jpg") center/cover no-repeat;
-        }
-
-        .landing-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 720px;
-        }
-
-        .landing-eyebrow {
-            color: var(--bs-primary);
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            font-size: .85rem;
-        }
-
-        .landing-title {
-            font-size: clamp(2.4rem, 7vw, 5.8rem);
-            line-height: .95;
-            font-weight: 800;
-        }
-
-        .landing-subtitle {
-            max-width: 560px;
-            color: rgba(255, 255, 255, .78);
-            font-size: clamp(1rem, 2vw, 1.25rem);
-        }
-
         .landing-section {
-            padding: 5rem 0;
-        }
-
-        .landing-section-sm {
-            padding: 3.5rem 0;
+            padding: 4.5rem 0;
         }
 
         .section-kicker {
@@ -77,54 +35,85 @@
             margin: 1rem auto 0;
         }
 
-        .landing-card {
-            background: linear-gradient(180deg, #111 0%, #090909 100%);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 24px;
-            height: 100%;
-            overflow: hidden;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, .35);
-            transition: .25s ease;
+        .hero-slide {
+            height: 560px;
+            position: relative;
         }
 
-        .landing-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(255, 15, 123, .45);
-            box-shadow: 0 18px 55px rgba(255, 15, 123, .10);
+        .hero-slide img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.42), rgba(0,0,0,.72));
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            max-width: 560px;
+            color: rgba(255,255,255,.82);
+        }
+
+        .soft-card {
+            background: #101010;
+            border: 0;
+            border-radius: 24px;
+            box-shadow: 0 16px 40px rgba(0,0,0,.25);
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 1.25rem;
         }
 
         .feature-icon {
-            width: 58px;
-            height: 58px;
-            border-radius: 18px;
-            background: rgba(255, 15, 123, .12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            margin: 0 auto 1rem;
-        }
-
-        .space-img,
-        .plan-img {
-            width: 100%;
-            object-fit: cover;
-            display: block;
+            font-size: 2rem;
+            margin-bottom: .7rem;
         }
 
         .space-img {
-            height: 280px;
-            border-radius: 24px;
+            height: 270px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 22px;
         }
 
         .plan-img {
-            height: 260px;
+            height: 270px;
+            width: 100%;
+            object-fit: cover;
         }
 
         .plan-price {
             color: var(--bs-primary);
             font-size: 1.25rem;
             font-weight: 800;
+        }
+
+        .testimonial-box {
+            background: #101010;
+            border-radius: 24px;
+            padding: 2rem;
+            height: 100%;
         }
 
         .testimonial-avatar {
@@ -135,15 +124,15 @@
         }
 
         .contact-icon {
-            width: 46px;
-            height: 46px;
+            width: 48px;
+            height: 48px;
             object-fit: contain;
             flex-shrink: 0;
         }
 
         .social-icon {
-            height: 62px;
-            width: 62px;
+            height: 64px;
+            width: 64px;
             object-fit: contain;
             transition: .25s ease;
         }
@@ -159,17 +148,9 @@
             transition: opacity .75s ease, transform .75s ease;
         }
 
-        .reveal {
-            transform: translateY(38px);
-        }
-
-        .reveal-left {
-            transform: translateX(-38px);
-        }
-
-        .reveal-right {
-            transform: translateX(38px);
-        }
+        .reveal { transform: translateY(38px); }
+        .reveal-left { transform: translateX(-38px); }
+        .reveal-right { transform: translateX(38px); }
 
         .reveal.active,
         .reveal-left.active,
@@ -183,42 +164,52 @@
         .delay-3 { transition-delay: .36s; }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: .5rem 0 !important;
+            .navbar { padding: .55rem 0 !important; }
+
+            .landing-logo { height: 58px; }
+
+            .landing-section { padding: 3.2rem 0; }
+
+            .hero-slide { height: 500px; }
+
+            .hero-overlay {
+                background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.88));
             }
 
-            .landing-logo {
-                height: 58px;
-            }
-
-            .landing-hero {
-                min-height: 74dvh;
-                border-radius: 0 0 24px 24px;
-                background:
-                    linear-gradient(180deg, rgba(0, 0, 0, .45), rgba(0, 0, 0, .86)),
-                    url("static/cr1.jpg") center/cover no-repeat;
-            }
-
-            .landing-title {
-                font-size: 2.6rem;
-                line-height: 1;
-            }
-
-            .landing-hero-content {
+            .hero-content {
+                top: auto;
+                bottom: 3.5rem;
+                transform: none;
                 text-align: center;
             }
 
-            .landing-subtitle {
+            .hero-title {
+                font-size: 2.45rem;
+                line-height: 1.05;
+            }
+
+            .hero-subtitle {
                 margin-left: auto;
                 margin-right: auto;
+                font-size: 1rem;
             }
 
-            .landing-section {
-                padding: 3.25rem 0;
+            .hero-content .btn {
+                width: auto !important;
+                padding: .8rem 1.1rem;
+                font-size: .9rem;
             }
 
-            .landing-section-sm {
-                padding: 2.75rem 0;
+            .feature-box {
+                padding: 1rem .8rem;
+            }
+
+            .feature-box p {
+                font-size: .85rem;
+            }
+
+            .display-5 {
+                font-size: 2rem !important;
             }
 
             .space-img {
@@ -226,17 +217,17 @@
             }
 
             .plan-img {
-                height: 210px;
+                height: 215px;
             }
 
-            .landing-card .card-body {
+            .soft-card .card-body,
+            .testimonial-box {
                 padding: 1.35rem !important;
             }
 
-            .btn-lg {
-                width: 100%;
-                font-size: .95rem;
-                padding: .85rem 1rem;
+            #planes .btn,
+            #contacto .btn {
+                width: 100% !important;
             }
 
             .social-icon {
@@ -268,24 +259,13 @@
 
             <div class="collapse navbar-collapse" id="navbarPrincipal">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#inicio">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#planes">Planes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#sobreNosotras">Sobre Nosotras</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nuestroEspacio">Nuestro Espacio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contacto">Contacto</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#planes">Planes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobreNosotras">Sobre Nosotras</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nuestroEspacio">Nuestro Espacio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-outline-primary btn-auto rounded-pill px-4"
-                           href="autenticacion/iniciarSesion.html">
+                        <a class="btn btn-outline-primary btn-auto rounded-pill px-4" href="autenticacion/iniciarSesion.html">
                             Iniciar Sesión
                         </a>
                     </li>
@@ -296,117 +276,147 @@
 
     <main id="inicio">
 
-        <section class="landing-hero">
-            <div class="container">
-                <div class="landing-hero-content">
-                    <p class="landing-eyebrow mb-3">
-                        Valkiria Center
-                    </p>
+        <section>
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200" data-bs-pause="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                </div>
 
-                    <h1 class="landing-title text-white mb-4">
-                        Fuerza.<br>
-                        Disciplina.<br>
-                        Empoderamiento.
-                    </h1>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="hero-slide">
+                            <img src="static/cr1.jpg" class="d-block w-100" alt="Entrenamiento Valkiria Center">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <div class="container">
+                                    <h1 class="hero-title text-white mb-3">
+                                        Fuerza.<br>
+                                        Disciplina.<br>
+                                        Empoderamiento.
+                                    </h1>
+                                    <p class="lead hero-subtitle mb-4">
+                                        Un espacio creado por y para mujeres.
+                                    </p>
+                                    <a href="#planes" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Conoce nuestros planes
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <p class="landing-subtitle mb-4">
-                        Un gimnasio 100% femenino en Linares, creado para entrenar con confianza,
-                        energía y acompañamiento real.
-                    </p>
+                    <div class="carousel-item">
+                        <div class="hero-slide">
+                            <img src="static/cr2.jpg" class="d-block w-100" alt="Entrenamiento funcional">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <div class="container">
+                                    <h1 class="hero-title text-white mb-3">
+                                        Transforma tu energía<br>
+                                        en resultados.
+                                    </h1>
+                                    <p class="lead hero-subtitle mb-4">
+                                        Entrena con propósito y descubre todo tu potencial.
+                                    </p>
+                                    <a href="#contacto" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Quiero entrenar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#planes" class="btn btn-primary btn-lg rounded-pill px-4">
-                            Conoce nuestros planes
-                        </a>
-
-                        <a href="#contacto" class="btn btn-outline-primary btn-lg rounded-pill px-4">
-                            Contáctanos
-                        </a>
+                    <div class="carousel-item">
+                        <div class="hero-slide">
+                            <img src="static/cr3.jpg" class="d-block w-100" alt="Comunidad Valkiria Center">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+                                <div class="container">
+                                    <h1 class="hero-title text-white mb-3">
+                                        Más que un gimnasio,<br>
+                                        una experiencia.
+                                    </h1>
+                                    <p class="lead hero-subtitle mb-4">
+                                        Bienestar, confianza y progreso en un solo lugar.
+                                    </p>
+                                    <a href="#sobreNosotras" class="btn btn-primary btn-lg rounded-pill px-4">
+                                        Conócenos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
         </section>
 
-        <section class="landing-section-sm">
+        <section class="landing-section">
             <div class="container">
                 <div class="row g-3 g-md-4">
-
                     <div class="col-6 col-lg-3 reveal delay-1">
-                        <div class="landing-card text-center p-3 p-md-4">
+                        <div class="feature-box">
                             <div class="feature-icon">💜</div>
                             <h6 class="fw-bold text-white">100% femenino</h6>
-                            <p class="text-secondary small mb-0">
-                                Un espacio seguro, cómodo y motivador.
-                            </p>
+                            <p class="text-secondary mb-0">Un espacio seguro y motivador.</p>
                         </div>
                     </div>
-
                     <div class="col-6 col-lg-3 reveal delay-2">
-                        <div class="landing-card text-center p-3 p-md-4">
+                        <div class="feature-box">
                             <div class="feature-icon">💪</div>
-                            <h6 class="fw-bold text-white">Entrenamiento efectivo</h6>
-                            <p class="text-secondary small mb-0">
-                                Rutinas adaptadas a tu nivel y objetivo.
-                            </p>
+                            <h6 class="fw-bold text-white">Entrenamientos efectivos</h6>
+                            <p class="text-secondary mb-0">Rutinas adaptadas a tus objetivos.</p>
                         </div>
                     </div>
-
                     <div class="col-6 col-lg-3 reveal delay-3">
-                        <div class="landing-card text-center p-3 p-md-4">
+                        <div class="feature-box">
                             <div class="feature-icon">🤝</div>
-                            <h6 class="fw-bold text-white">Comunidad</h6>
-                            <p class="text-secondary small mb-0">
-                                Acompañamiento y motivación constante.
-                            </p>
+                            <h6 class="fw-bold text-white">Comunidad Valkiria</h6>
+                            <p class="text-secondary mb-0">Acompañamiento y motivación real.</p>
                         </div>
                     </div>
-
                     <div class="col-6 col-lg-3 reveal delay-1">
-                        <div class="landing-card text-center p-3 p-md-4">
+                        <div class="feature-box">
                             <div class="feature-icon">🏆</div>
                             <h6 class="fw-bold text-white">Profesionales</h6>
-                            <p class="text-secondary small mb-0">
-                                Entrenadoras comprometidas con tu progreso.
-                            </p>
+                            <p class="text-secondary mb-0">Entrenadoras comprometidas.</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <section class="landing-section" id="sobreNosotras">
+        <section class="landing-section pt-0" id="sobreNosotras">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10 reveal">
-                        <div class="landing-card p-4 p-md-5 text-center">
-                            <p class="section-kicker mb-2">Nuestra identidad</p>
-
-                            <h2 class="display-5 fw-bold text-white">
-                                Sobre Nosotras
-                            </h2>
-
-                            <div class="section-divider"></div>
-
-                            <p class="lead text-secondary mt-4 mb-0">
-                                Valkiria Center es un gimnasio 100% femenino ubicado en Linares.
-                                Llevamos casi 3 años entregando un servicio cercano, profesional
-                                y motivador para mujeres que buscan entrenar en un ambiente cómodo,
-                                exclusivo y con energía positiva.
-                            </p>
-                        </div>
+                    <div class="col-lg-10 text-center reveal">
+                        <p class="section-kicker mb-2">Nuestra identidad</p>
+                        <h2 class="display-5 fw-bold text-white">Sobre Nosotras</h2>
+                        <div class="section-divider"></div>
+                        <p class="lead text-secondary mt-4 mb-0">
+                            Valkiria Center es un gimnasio 100% femenino ubicado en Linares.
+                            Llevamos casi 3 años entregando un servicio cercano, profesional y motivador para mujeres
+                            que buscan entrenar en un ambiente cómodo, exclusivo y con energía positiva.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="landing-section-sm" id="nuestroEspacio">
+        <section class="landing-section" id="nuestroEspacio">
             <div class="container">
                 <div class="text-center mb-5 reveal">
                     <p class="section-kicker mb-2">Conoce el lugar</p>
-                    <h2 class="display-5 fw-bold text-white">
-                        Nuestro Espacio
-                    </h2>
+                    <h2 class="display-5 fw-bold text-white">Nuestro Espacio</h2>
                     <div class="section-divider"></div>
                 </div>
 
@@ -414,11 +424,9 @@
                     <div class="col-12 col-md-4 reveal-left">
                         <img src="static/nuestroEspacio1.jpg" class="space-img" alt="Espacio de entrenamiento Valkiria">
                     </div>
-
                     <div class="col-12 col-md-4 reveal">
                         <img src="static/nuestroEspacio2.jpg" class="space-img" alt="Sala de entrenamiento Valkiria">
                     </div>
-
                     <div class="col-12 col-md-4 reveal-right">
                         <img src="static/nuestroEspacio3.jpg" class="space-img" alt="Equipamiento Valkiria">
                     </div>
@@ -430,36 +438,23 @@
             <div class="container">
                 <div class="text-center mb-5 reveal">
                     <p class="section-kicker mb-2">Elige tu plan</p>
-                    <h2 class="display-5 fw-bold text-white">
-                        Planes que se adaptan a ti
-                    </h2>
+                    <h2 class="display-5 fw-bold text-white">Planes que se adaptan a ti</h2>
                     <div class="section-divider"></div>
                 </div>
 
                 <div class="row g-4">
-
                     <div class="col-12 col-lg-6 reveal-left">
-                        <div class="landing-card">
+                        <div class="soft-card">
                             <img src="static/plan1.jpg" class="plan-img" alt="Plan personalizado">
-
                             <div class="card-body p-4">
-                                <h4 class="fw-bold text-white">
-                                    Plan Personalizado
-                                </h4>
-
-                                <p class="plan-price">
-                                    Desde $68.000
-                                </p>
-
+                                <h4 class="fw-bold text-white">Plan Personalizado</h4>
+                                <p class="plan-price">Desde $68.000</p>
                                 <ul class="list-unstyled text-secondary mb-4">
                                     <li>✔ Inicial: 8 clases - $68.000</li>
                                     <li>✔ Elite: 12 clases - $96.000</li>
                                     <li>✔ Premium: 16 clases - $120.000</li>
                                 </ul>
-
-                                <button class="btn btn-primary rounded-pill w-100"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalPlanPersonalizado">
+                                <button class="btn btn-primary rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalPlanPersonalizado">
                                     Ver condiciones
                                 </button>
                             </div>
@@ -467,27 +462,17 @@
                     </div>
 
                     <div class="col-12 col-lg-6 reveal-right">
-                        <div class="landing-card">
+                        <div class="soft-card">
                             <img src="static/plan3.jpg" class="plan-img" alt="Plan personalizado dúo">
-
                             <div class="card-body p-4">
-                                <h4 class="fw-bold text-white">
-                                    Plan Personalizado Dúo
-                                </h4>
-
-                                <p class="plan-price">
-                                    Desde 2 x $121.040
-                                </p>
-
+                                <h4 class="fw-bold text-white">Plan Personalizado Dúo</h4>
+                                <p class="plan-price">Desde 2 x $121.040</p>
                                 <ul class="list-unstyled text-secondary mb-4">
                                     <li>✔ Prime: 8 clases - 2 x $121.040</li>
                                     <li>✔ Move: 12 clases - 2 x $170.880</li>
                                     <li>✔ Aura: 16 clases - 2 x $213.600</li>
                                 </ul>
-
-                                <button class="btn btn-primary rounded-pill w-100"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalPlanDuo">
+                                <button class="btn btn-primary rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalPlanDuo">
                                     Ver condiciones
                                 </button>
                             </div>
@@ -495,27 +480,17 @@
                     </div>
 
                     <div class="col-12 col-lg-6 reveal-left">
-                        <div class="landing-card">
+                        <div class="soft-card">
                             <img src="static/plan4.jpg" class="plan-img" alt="Plan grupal estudiante">
-
                             <div class="card-body p-4">
-                                <h4 class="fw-bold text-white">
-                                    Plan Grupal Estudiante
-                                </h4>
-
-                                <p class="plan-price">
-                                    Desde $35.000
-                                </p>
-
+                                <h4 class="fw-bold text-white">Plan Grupal Estudiante</h4>
+                                <p class="plan-price">Desde $35.000</p>
                                 <ul class="list-unstyled text-secondary mb-4">
                                     <li>✔ Tribu: 8 clases - $35.000</li>
                                     <li>✔ Flow: 12 clases - $45.000</li>
                                     <li>✔ Power: 24 clases - $65.000</li>
                                 </ul>
-
-                                <button class="btn btn-primary rounded-pill w-100"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalPlanEstudiante">
+                                <button class="btn btn-primary rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalPlanEstudiante">
                                     Ver condiciones
                                 </button>
                             </div>
@@ -523,105 +498,66 @@
                     </div>
 
                     <div class="col-12 col-lg-6 reveal-right">
-                        <div class="landing-card">
+                        <div class="soft-card">
                             <img src="static/plan2.jpg" class="plan-img" alt="Plan grupal">
-
                             <div class="card-body p-4">
-                                <h4 class="fw-bold text-white">
-                                    Plan Grupal
-                                </h4>
-
-                                <p class="plan-price">
-                                    Desde $33.000
-                                </p>
-
+                                <h4 class="fw-bold text-white">Plan Grupal</h4>
+                                <p class="plan-price">Desde $33.000</p>
                                 <ul class="list-unstyled text-secondary mb-4">
                                     <li>✔ Active: 6 clases - $33.000</li>
                                     <li>✔ Vibra: 6 clases - $44.000</li>
                                     <li>✔ Level: 12 clases - $54.000</li>
                                     <li>✔ Fit: 16 clases - $75.000</li>
                                 </ul>
-
-                                <button class="btn btn-primary rounded-pill w-100"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalPlanGrupal">
+                                <button class="btn btn-primary rounded-pill w-100" data-bs-toggle="modal" data-bs-target="#modalPlanGrupal">
                                     Ver condiciones
                                 </button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <section class="landing-section-sm">
+        <section class="landing-section pt-0">
             <div class="container">
                 <div class="text-center mb-5 reveal">
                     <p class="section-kicker mb-2">Experiencias reales</p>
-                    <h2 class="display-5 fw-bold text-white">
-                        Testimonios
-                    </h2>
+                    <h2 class="display-5 fw-bold text-white">Testimonios</h2>
                     <div class="section-divider"></div>
                 </div>
 
                 <div class="row g-4">
-
                     <div class="col-12 col-md-4 reveal delay-1">
-                        <div class="landing-card text-center p-4">
+                        <div class="testimonial-box text-center">
                             <img src="static/user.webp" class="rounded-circle testimonial-avatar mb-3" alt="Camila R.">
-
-                            <h5 class="fw-bold text-white">
-                                Camila R.
-                            </h5>
-
-                            <div class="text-warning fs-5 mb-3">
-                                ⭐⭐⭐⭐⭐
-                            </div>
-
+                            <h5 class="fw-bold text-white">Camila R.</h5>
+                            <div class="text-warning fs-5 mb-3">⭐⭐⭐⭐⭐</div>
                             <p class="text-secondary fst-italic mb-0">
-                                "Desde que llegué a Valkiria me siento más fuerte y segura.
-                                El ambiente es increíble."
+                                "Desde que llegué a Valkiria me siento más fuerte y segura. El ambiente es increíble."
                             </p>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-4 reveal delay-2">
-                        <div class="landing-card text-center p-4">
+                        <div class="testimonial-box text-center">
                             <img src="static/user.webp" class="rounded-circle testimonial-avatar mb-3" alt="Valentina M.">
-
-                            <h5 class="fw-bold text-white">
-                                Valentina M.
-                            </h5>
-
-                            <div class="text-warning fs-5 mb-3">
-                                ⭐⭐⭐⭐⭐
-                            </div>
-
+                            <h5 class="fw-bold text-white">Valentina M.</h5>
+                            <div class="text-warning fs-5 mb-3">⭐⭐⭐⭐⭐</div>
                             <p class="text-secondary fst-italic mb-0">
                                 "Las entrenadoras son profesionales y siempre están pendientes de ayudarte."
                             </p>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-4 reveal delay-3">
-                        <div class="landing-card text-center p-4">
+                        <div class="testimonial-box text-center">
                             <img src="static/user.webp" class="rounded-circle testimonial-avatar mb-3" alt="Fernanda P.">
-
-                            <h5 class="fw-bold text-white">
-                                Fernanda P.
-                            </h5>
-
-                            <div class="text-warning fs-5 mb-3">
-                                ⭐⭐⭐⭐⭐
-                            </div>
-
+                            <h5 class="fw-bold text-white">Fernanda P.</h5>
+                            <div class="text-warning fs-5 mb-3">⭐⭐⭐⭐⭐</div>
                             <p class="text-secondary fst-italic mb-0">
                                 "No es solo un gimnasio, es una comunidad donde todas avanzamos juntas."
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -630,14 +566,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-7 reveal">
-                        <div class="landing-card p-4 p-md-5">
+                        <div class="soft-card p-4 p-md-5">
                             <div class="text-center mb-4">
                                 <p class="section-kicker mb-2">Comienza hoy</p>
-
-                                <h2 class="fw-bold text-white">
-                                    Contáctanos
-                                </h2>
-
+                                <h2 class="fw-bold text-white">Contáctanos</h2>
                                 <p class="text-secondary mb-0">
                                     ¿Tienes dudas sobre nuestros planes o quieres comenzar a entrenar?
                                     Estamos aquí para ayudarte.
@@ -646,26 +578,17 @@
 
                             <div class="d-flex align-items-center gap-3 mb-3">
                                 <img src="static/ubicacion.png" class="contact-icon" alt="Ubicación">
-
-                                <div class="fw-semibold text-white">
-                                    Manuel Rodríguez 1476, Linares
-                                </div>
+                                <div class="fw-semibold text-white">Manuel Rodríguez 1476, Linares</div>
                             </div>
 
                             <div class="d-flex align-items-center gap-3 mb-3">
                                 <img src="static/telefono.png" class="contact-icon" alt="Teléfono">
-
-                                <div class="fw-semibold text-white">
-                                    +56 9 7132 XXXX
-                                </div>
+                                <div class="fw-semibold text-white">+56 9 7132 XXXX</div>
                             </div>
 
                             <div class="d-flex align-items-center gap-3 mb-4">
                                 <img src="static/correo.png" class="contact-icon" alt="Correo">
-
-                                <div class="fw-semibold text-white">
-                                    contacto@valkyriacenter.cl
-                                </div>
+                                <div class="fw-semibold text-white">contacto@valkyriacenter.cl</div>
                             </div>
 
                             <a href="https://wa.me/56962314079" class="btn btn-primary btn-lg rounded-pill w-100">
@@ -681,28 +604,21 @@
 
     <footer class="footer text-center">
         <div class="container">
-            <h5 class="text-white">
-                Nuestras redes sociales
-            </h5>
-
+            <h5 class="text-white">Nuestras redes sociales</h5>
             <div class="d-flex justify-content-center gap-3 gap-md-4 mt-3 flex-wrap">
                 <a href="https://www.instagram.com/valkiriacenter?igsh=MWIwc3hpbHR4MnMweA==" class="text-decoration-none">
                     <img src="static/ig.png" class="social-icon" alt="Instagram">
                 </a>
-
                 <a href="#" class="text-decoration-none">
                     <img src="static/fb.png" class="social-icon" alt="Facebook">
                 </a>
-
                 <a href="#" class="text-decoration-none">
                     <img src="static/tk.png" class="social-icon" alt="TikTok">
                 </a>
-
                 <a href="https://wa.me/56962314079" class="text-decoration-none">
                     <img src="static/wsp.png" class="social-icon" alt="WhatsApp">
                 </a>
             </div>
-
             <p class="mb-0 mt-4 text-secondary">
                 &copy; 2026 Valkiria Center. Todos los derechos reservados.
             </p>
@@ -716,13 +632,12 @@
                     <h5 class="modal-title">Condiciones Plan Personalizado</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-                    <p>• Clases de 60 minutos.</p>
-                    <p>• Modalidad 1:1, 1:2 o 1:3.</p>
+                    <p>• Todas las clases tienen una duración de 60 minutos.</p>
+                    <p>• El pago está sujeto a modalidad 1:1, 1:2 o 1:3.</p>
                     <p>• Avisar inasistencia con 1 hora de anticipación.</p>
-                    <p>• Reagendar dentro del mismo mes.</p>
-                    <p class="mb-0">• Congelamiento con licencia médica.</p>
+                    <p>• Las clases por inasistencia deben reagendarse dentro del mismo mes.</p>
+                    <p class="mb-0">• Para congelar el plan por salud debe presentar licencia médica.</p>
                 </div>
             </div>
         </div>
@@ -732,15 +647,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4">
                 <div class="modal-header">
-                    <h5 class="modal-title">Condiciones Plan Personalizado Dúo</h5>
+                    <h5 class="modal-title">Plan Personalizado Dúo</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-                    <p>• Clases de 60 minutos.</p>
-                    <p>• Entrenamiento en dupla.</p>
+                    <p>• Todas las clases tienen una duración de 60 minutos.</p>
+                    <p>• Entrenamiento en dupla con acompañamiento profesional.</p>
                     <p>• Avisar inasistencia con 1 hora de anticipación.</p>
-                    <p>• Reagendar dentro del mismo mes.</p>
+                    <p>• Las clases deben reagendarse dentro del mismo mes.</p>
                     <p class="mb-0">• Acceso a beneficios y descuentos profesionales.</p>
                 </div>
             </div>
@@ -751,10 +665,9 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4">
                 <div class="modal-header">
-                    <h5 class="modal-title">Condiciones Plan Grupal Estudiante</h5>
+                    <h5 class="modal-title">Plan Grupal Estudiante</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <p>• Clases de 60 minutos y horario fijo.</p>
                     <p>• Modalidad grupal máximo 12 mujeres.</p>
@@ -770,10 +683,9 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-4">
                 <div class="modal-header">
-                    <h5 class="modal-title">Condiciones Plan Grupal</h5>
+                    <h5 class="modal-title">Plan Grupal</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <p>• Clases de 60 minutos y horario fijo.</p>
                     <p>• Modalidad grupal máximo 12 mujeres.</p>
