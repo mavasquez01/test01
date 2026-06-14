@@ -1480,3 +1480,27 @@ body {
         overflow: hidden;
     }
 }
+
+@media (max-width: 768px) {
+
+    #nuestroEspacio .container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    #nuestroEspacio .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        row-gap: 1.5rem;
+    }
+
+    #nuestroEspacio .row > [class*="col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    #nuestroEspacio .space-img {
+        width: 100%;
+        display: block;
+    }
+}
