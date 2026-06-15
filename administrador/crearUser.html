@@ -40,72 +40,104 @@
             </div>
         </div>
     </nav>
-    
+
     <main class="d-flex justify-content-center py-4 min-vh-100">
 
-    <div class="container-fluid" style="max-width: 420px;">
-        <div class="row text-center mb-4">
-            <div class="col-12">
-                <h2 class="text-white fw-bold">
-                    Crear Usuario
-                </h2>
+        <div class="container-fluid" style="max-width: 420px;">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <h2 class="text-white fw-bold">
+                        Crear Usuario
+                    </h2>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <form action="">
-                    <div class="mb-4">
-                        <label for="rut"
-                            class="form-label text-white">
-                            RUT
-                        </label>
+            <div class="row">
+                <div class="col-12">
+                    <form action="">
+                        <div class="mb-4">
+                            <label for="rut" class="form-label text-white">
+                                RUT
+                            </label>
 
-                        <input type="text"
-                            class="form-control custom-input"
-                            name="rut"
-                            placeholder="20.456.678-9">
-                    </div>
-                    <div class="mb-4">
-                        <label for="rol"
-                            class="form-label text-white">
-                            Rol
-                        </label>
-                        <select class="form-select custom-input"
-                            name="rol">
+                            <input type="text" class="form-control custom-input" name="rut" placeholder="20.456.678-9">
+                        </div>
+                        <div class="mb-4">
+                            <label for="rol" class="form-label text-white">
+                                Rol
+                            </label>
+                            <select class="form-select custom-input" id="rol" name="rol">
 
-                            <option selected disabled>
-                                Seleccionar rol
-                            </option>
+                                <option selected disabled>
+                                    Seleccionar rol
+                                </option>
 
-                            <option value="alumna">
-                                Alumna
-                            </option>
+                                <option value="alumna">
+                                    Alumna
+                                </option>
 
-                            <option value="profesor">
-                                Profesor
-                            </option>
+                                <option value="profesor">
+                                    Profesor
+                                </option>
 
-                            <option value="admin">
-                                Administrador
-                            </option>
+                                <option value="admin">
+                                    Administrador
+                                </option>
 
-                        </select>
-                    </div>
-                    <div class="d-grid mt-5">
-                        <button type="submit"
-                            class="btn btn-primary py-3 fw-bold rounded-4">
-                            GUARDAR
-                        </button>
-                    </div>
+                            </select>
+                        </div>
+                        <div class="mb-4 d-none" id="planContainer">
+                            <label for="plan" class="form-label text-white">
+                                Plan
+                            </label>
 
-                </form>
+                            <select class="form-select custom-input" name="plan" id="plan">
+                                <option selected disabled value="">
+                                    Seleccionar Plan
+                                </option>
 
+                                <option value="grupEst">Grupal Estudiante</option>
+                                <option value="grupAct">Grupal Active</option>
+                                <option value="grupVi">Grupal Vibra</option>
+                                <option value="grupLev">Grupal Level</option>
+                                <option value="grupFit">Grupal FIT</option>
+                                <option value="persIni">Personalizado Inicial</option>
+                                <option value="persEli">Personalizado Elite</option>
+                                <option value="persPre">Personalizado Premium</option>
+                                <option value="persDuoPri">Personalizado Duo Prime</option>
+                                <option value="persDuoMov">Personalizado Duo Move</option>
+                                <option value="persDuoAur">Personalizado Duo Aura</option>
+                            </select>
+                        </div>
+                        <div class="d-grid mt-5">
+                            <button type="submit" class="btn btn-primary py-3 fw-bold rounded-4">
+                                GUARDAR
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
+
         </div>
 
-    </div>
+    </main>
+    <script>
+        const rolSelect = document.getElementById('rol');
+        const planContainer = document.getElementById('planContainer');
+        const planSelect = document.getElementById('plan');
 
-</main>
+        rolSelect.addEventListener('change', function () {
+            if (this.value === 'alumna') {
+                planContainer.classList.remove('d-none');
+                planSelect.required = true;
+            } else {
+                planContainer.classList.add('d-none');
+                planSelect.required = false;
+                planSelect.value = '';
+            }
+        });
+    </script>
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
